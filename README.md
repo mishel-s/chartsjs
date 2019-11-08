@@ -4,9 +4,7 @@ The project created with Create react App also includes chart.js and socket.io-c
 
 ## You can start project locally following next steps:
 
-### 0. Clone repository
-
-### 1. Go to folder 'chartsjs'
+### 1. Clone repository
 
 ### 2. npm install
 
