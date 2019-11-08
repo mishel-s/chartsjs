@@ -6,10 +6,14 @@ The project created with Create react App also includes chart.js and socket.io-c
 
 ### 0. Clone repository
 
-### 1. Go to folder 'random_number'
+### 1. Go to folder 'chartsjs'
 
 ### 2. npm install
 
 ### 3. npm start
 
 It starts project locally
+
+### 4. You also should start server locally for getting random data, so go to link bellow and follow steps there.
+
+[https://github.com/mishel-s/servernodecharts]

@@ -2,6 +2,7 @@
   "name": "chartsjs",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mishel-s.github.io/chartsjs",
   "dependencies": {
     "chart.js": "^2.9.2",
     "socket.io-client": "^2.3.0",
@@ -26,13 +27,16 @@
     "redux-devtools-extension": "^2.13.8",
     "styled-components": "^4.3.2",
     "classnames": "^2.2.6",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "gh-pages": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
