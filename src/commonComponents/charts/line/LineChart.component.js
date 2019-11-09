@@ -26,10 +26,13 @@ class LineChart extends Component {
   }
 
   createChart = () => {
-    const { title, data, color } = this.props;
+    const {
+      data,
+      config: { type, title, label, barColor, yAxesTicks },
+    } = this.props;
 
     this.myChart = new Chart(this.chartRef.current, {
-      type: 'line',
+      type: type,
       options: {
         title: {
           display: true,
@@ -65,8 +68,8 @@ class LineChart extends Component {
                 zeroLineColor: 'rgb(91, 91, 91)',
               },
               ticks: {
-                min: -100,
-                max: 100,
+                min: yAxesTicks.min,
+                max: yAxesTicks.max,
                 fontColor: 'white',
               },
             },
@@ -84,12 +87,12 @@ class LineChart extends Component {
         labels: data.map(d => d.timestamp),
         datasets: [
           {
-            label: 'Number values',
+            label: label,
             data: data.map(d => d.value),
             fill: 'none',
-            backgroundColor: color,
+            backgroundColor: barColor,
             pointRadius: 3,
-            borderColor: color,
+            borderColor: barColor,
             borderWidth: 1,
             lineTension: 0,
           },

@@ -88,7 +88,9 @@ class MainBlock extends Component {
   }
   componentDidMount() {
     const { socket } = this;
-    socket.on('data', data => this.setState({ ...this.state, response: [...this.state.response, data] }));
+    socket.on('data', data => {
+      this.setState({ ...this.state, response: [...this.state.response, data] });
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -120,16 +122,47 @@ class MainBlock extends Component {
   };
 
   render() {
-    const { threshold } = this.state;
+    const { threshold, response } = this.state;
     return (
       <MainWrapper>
         <ChartsWrapper>
-          <LineChart data={this.state.response && this.state.response} title={'A line chart'} color="#70CAD1" />
+          <LineChart
+            data={response && response}
+            config={{
+              type: 'line',
+              title: 'A line chart',
+              label: 'Number values',
+              barColor: '#70CAD1',
+              yAxesTicks: {
+                min: -100,
+                max: 100,
+              },
+            }}
+          />
           <BarChart
-            data={this.state.response && this.state.response}
-            title={'A bar chart'}
-            barColor="#70CAD1"
-            backgroundColor="#202020"
+            data={response && response}
+            config={{
+              type: 'bar',
+              title: 'A bar chart',
+              label: 'The amount of numbers',
+              barColor: '#70CAD1',
+              yAxesTicks: {
+                min: 0,
+                max: 10,
+              },
+              categories: [
+                [-100, -81],
+                [-80, -61],
+                [-60, -41],
+                [-40, -21],
+                [-20, -1],
+                [0, 20],
+                [21, 40],
+                [41, 60],
+                [61, 80],
+                [81, 100],
+              ],
+            }}
           />
         </ChartsWrapper>
         <InputWrapper>

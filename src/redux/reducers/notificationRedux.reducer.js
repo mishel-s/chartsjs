@@ -18,6 +18,13 @@ const data = handleActions(
         status: !state.status,
       };
     },
+    [showNotification.FAILURE](state, payload) {
+      return {
+        type: 'error',
+        message: `Something went wrong - ${payload.payload.message}`,
+        status: !state.status,
+      };
+    },
   },
   initialState
 );

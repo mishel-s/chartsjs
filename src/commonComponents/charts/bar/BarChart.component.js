@@ -26,12 +26,17 @@ class BarChart extends Component {
   }
 
   createChart = () => {
+    const {
+      data,
+      config: { type, title, label, barColor, yAxesTicks, categories },
+    } = this.props;
+
     this.myChart = new Chart(this.canvasRef.current, {
-      type: 'bar',
+      type: type,
       options: {
         title: {
           display: true,
-          text: this.props.title,
+          text: title,
           fontSize: 20,
           fontColor: 'white',
         },
@@ -54,8 +59,8 @@ class BarChart extends Component {
                 zeroLineColor: 'rgb(91, 91, 91)',
               },
               ticks: {
-                min: 0,
-                max: 10,
+                min: yAxesTicks.min,
+                max: yAxesTicks.max,
                 fontColor: 'white',
               },
             },
@@ -70,35 +75,15 @@ class BarChart extends Component {
         },
       },
       data: {
-        labels: [
-          '-100 - -81',
-          '-80 - -61',
-          '-60 - -41',
-          '-40 - -21',
-          '-20 - -1',
-          '0 - 20',
-          '21 - 40',
-          '41 - 60',
-          '61 - 80',
-          '81 - 100',
-        ],
+        labels: categories.map(category => `${category[0]} - ${category[1]}`),
         datasets: [
           {
-            label: 'The amount of numbers',
+            label: label,
             order: 2,
-            data: [
-              this.props.data.filter(item => item.value >= -100 && item.value < -80).length,
-              this.props.data.filter(item => item.value >= -80 && item.value < -60).length,
-              this.props.data.filter(item => item.value >= -60 && item.value < -40).length,
-              this.props.data.filter(item => item.value >= -40 && item.value < -20).length,
-              this.props.data.filter(item => item.value >= -20 && item.value < 0).length,
-              this.props.data.filter(item => item.value >= 0 && item.value < 21).length,
-              this.props.data.filter(item => item.value >= 21 && item.value < 41).length,
-              this.props.data.filter(item => item.value >= 41 && item.value < 61).length,
-              this.props.data.filter(item => item.value >= 61 && item.value < 81).length,
-              this.props.data.filter(item => item.value >= 81 && item.value < 101).length,
-            ],
-            backgroundColor: this.props.barColor,
+            data: categories.map(
+              category => data.filter(item => item.value >= category[0] && item.value <= category[1]).length
+            ),
+            backgroundColor: barColor,
             minBarLength: 1,
           },
         ],
@@ -107,18 +92,14 @@ class BarChart extends Component {
   };
 
   updateChart = () => {
-    this.myChart.data.datasets[0].data = [
-      this.props.data.filter(item => item.value >= -100 && item.value < -80).length,
-      this.props.data.filter(item => item.value >= -80 && item.value < -60).length,
-      this.props.data.filter(item => item.value >= -60 && item.value < -40).length,
-      this.props.data.filter(item => item.value >= -40 && item.value < -20).length,
-      this.props.data.filter(item => item.value >= -20 && item.value < 0).length,
-      this.props.data.filter(item => item.value >= 0 && item.value < 21).length,
-      this.props.data.filter(item => item.value >= 21 && item.value < 41).length,
-      this.props.data.filter(item => item.value >= 41 && item.value < 61).length,
-      this.props.data.filter(item => item.value >= 61 && item.value < 81).length,
-      this.props.data.filter(item => item.value >= 81 && item.value < 101).length,
-    ];
+    const {
+      config: { categories },
+      data,
+    } = this.props;
+
+    this.myChart.data.datasets[0].data = categories.map(
+      category => data.filter(item => item.value >= category[0] && item.value <= category[1]).length
+    );
     const { max } = this.myChart.options.scales.yAxes[0].ticks;
     this.myChart.data.datasets[0].data.some(number => number >= max) &&
       (this.myChart.options.scales.yAxes[0].ticks.max += 10);
