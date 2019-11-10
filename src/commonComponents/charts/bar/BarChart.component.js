@@ -21,8 +21,11 @@ class BarChart extends Component {
     this.createChart();
   }
 
-  componentDidUpdate() {
-    this.updateChart();
+  componentDidUpdate(prevProps, prevState) {
+    const { data } = this.props;
+    if (prevProps.data !== data) {
+      this.updateChart();
+    }
   }
 
   createChart = () => {
@@ -75,13 +78,13 @@ class BarChart extends Component {
         },
       },
       data: {
-        labels: categories.map(category => `${category[0]} - ${category[1]}`),
+        labels: categories.map(category => `${category.from} - ${category.to}`),
         datasets: [
           {
             label: label,
             order: 2,
             data: categories.map(
-              category => data.filter(item => item.value >= category[0] && item.value <= category[1]).length
+              category => data.filter(item => item.value >= category.from && item.value <= category.to).length
             ),
             backgroundColor: barColor,
             minBarLength: 1,
@@ -98,7 +101,7 @@ class BarChart extends Component {
     } = this.props;
 
     this.myChart.data.datasets[0].data = categories.map(
-      category => data.filter(item => item.value >= category[0] && item.value <= category[1]).length
+      category => data.filter(item => item.value >= category.from && item.value <= category.to).length
     );
     const { max } = this.myChart.options.scales.yAxes[0].ticks;
     this.myChart.data.datasets[0].data.some(number => number >= max) &&

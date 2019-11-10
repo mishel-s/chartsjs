@@ -21,8 +21,11 @@ class LineChart extends Component {
     this.createChart();
   }
 
-  componentDidUpdate() {
-    this.updateChart();
+  componentDidUpdate(prevProps, prevState) {
+    const { data } = this.props;
+    if (prevProps.data !== data) {
+      this.updateChart();
+    }
   }
 
   createChart = () => {
