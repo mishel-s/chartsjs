@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/chartsjs/static/css/main.e59289c3.chunk.css",
-    "main.js": "/chartsjs/static/js/main.2cdb4fc6.chunk.js",
-    "main.js.map": "/chartsjs/static/js/main.2cdb4fc6.chunk.js.map",
+    "main.js": "/chartsjs/static/js/main.f218815b.chunk.js",
+    "main.js.map": "/chartsjs/static/js/main.f218815b.chunk.js.map",
     "runtime~main.js": "/chartsjs/static/js/runtime~main.d1f1052a.js",
     "runtime~main.js.map": "/chartsjs/static/js/runtime~main.d1f1052a.js.map",
-    "static/js/2.e0b55a77.chunk.js": "/chartsjs/static/js/2.e0b55a77.chunk.js",
-    "static/js/2.e0b55a77.chunk.js.map": "/chartsjs/static/js/2.e0b55a77.chunk.js.map",
+    "static/js/2.c805a783.chunk.js": "/chartsjs/static/js/2.c805a783.chunk.js",
+    "static/js/2.c805a783.chunk.js.map": "/chartsjs/static/js/2.c805a783.chunk.js.map",
     "index.html": "/chartsjs/index.html",
-    "precache-manifest.6f04c9cfeb3a72b2209b53f66df10d30.js": "/chartsjs/precache-manifest.6f04c9cfeb3a72b2209b53f66df10d30.js",
+    "precache-manifest.caa1387ce3560d6697cc47d626dc2365.js": "/chartsjs/precache-manifest.caa1387ce3560d6697cc47d626dc2365.js",
     "service-worker.js": "/chartsjs/service-worker.js",
     "static/css/main.e59289c3.chunk.css.map": "/chartsjs/static/css/main.e59289c3.chunk.css.map"
   }
